@@ -4,14 +4,16 @@
 // ! 주의사항: 항상 한 개의 문자열 'B'가 존재합니다.
 // ! arr, arr[i]의 길이는 다양하게 주어집니다.
 
-function findBugInApples(arr) {
+function findBugInApples(arr, inx) {
+  // Map으로 B가 있는 배열의 인덱스를 찾고
+  // B가 있는 배열 안의 B의 인덱스를 찾아서 리턴
   let result = [];
-  for (i = 0; i < arr.length; i++) {
-    if (arr[i].includes("B")) {
-      result.push(i);
-      result.push(arr[i].indexOf("B"));
+  arr.map((el, inx) => {
+    if (el.includes("B")) {
+      result.push(inx);
+      result.push(el(inx).indexOf("B"));
     }
-  }
+  });
   return result;
 }
 
