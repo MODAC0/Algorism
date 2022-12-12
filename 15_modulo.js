@@ -7,6 +7,7 @@
 
 function modulo(num1, num2) {
   let result = 0;
+  if (num2 === 0) return "Error: cannot divide by zero";
   for (i = num2; i < num1; i += num2) {
     result = num1 - i;
   }
