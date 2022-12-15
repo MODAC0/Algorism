@@ -6,12 +6,9 @@
 // ! 주의사항: 배열의 길이는 3 이상입니다.
 
 const largestProductOfThree = function (arr) {
-  const sortArr = arr.sort((a, b) => a - b);
-  const x =
-    sortArr[sortArr.length - 1] *
-    sortArr[sortArr.length - 2] *
-    sortArr[sortArr.length - 3];
-  const y = sortArr[sortArr.length - 1] * sortArr[1] * sortArr[0];
+  arr.sort((a, b) => b - a);
+  const x = arr[0] * arr[1] * arr[2];
+  const y = arr[arr.length - 1] * arr[arr.length - 2] * arr[0];
   return Math.max(x, y);
 };
 
