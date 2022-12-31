@@ -1,21 +1,17 @@
-function solution(babbling) { // ["ayaye", "uuuma", "ye", "yemawoo", "ayaa"] (5)
-    var answer = 0;
-    let words = ["aya", "ye", "woo", "ma"];// (4)
-    for (i=0; i<babbling.length; i++) { // 5
-        for (j=0; j<words.length; j++) { // 4
-            if (babbling[i].includes(words[j])) {
-                // 받은 배열 안에 찾는 배열 요소가 있을 때 
-                if (babbling[i].slice(0,words[j].length) === babbling[i].slice(words[j].length,words[j].length*2)) break;
-                babbling[i] = babbling[i].replace(words[j],"");
-                j--;                
-            }
-            if (babbling[i].length === 0) {
-            answer++;
-            break
-            }
-        }
-    }
-    return answer;
+function solution(babbling) {
+  let words = ["aya", "ye", "woo", "ma"];
+  let newArr = [];
+  babbling.forEach((x) => {
+    words.forEach((y) => {
+      if (x.includes(y)) {
+        x = x.replace(y, 1);
+        newArr.push(x);
+        console.log(x);
+      }
+    });
+  });
+  return newArr.filter((el) => !isNaN(Number(el))).length;
 }
 
-console.log (solution (["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]));
+console.log(solution(["aya", "yee", "u", "maa", "wyeoo"]));
+// console.log(solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]));
