@@ -8,27 +8,37 @@ rotated에 중복된 요소는 없습니다.
 target이 없는 경우, -1을 리턴해야 합니다.
 **/
 const rotatedArraySearch = function (rotated, target) {
-  // if (exponent === 0) return 1;
-
-  // const half = parseInt(exponent / 2);
-  // const temp = power(base, half);
-  // const result = (temp * temp) % 94906249;
-
-  // if (exponent % 2 === 1) return (base * result) % 94906249;
-  // else return result;
-  let low = 0;
-  let high = rotated.length - 1;
-  let mid = parseInt((low + high) / 2);
-  while (low <= high) {
-    if (rotated[mid] === target) return mid;
-    else if (rotated[mid] > target) high = mid - 1;
-    else if (rotated[mid] < target) low = mid + 1;
+  let left = 0;
+  let right = rotated.length - 1;
+  while (left <= right) {
+    let mid = parseInt((left + right) / 2);
+    //! 탈출조건: mid = target의 인덱스
+    if (rotated[mid] === target) {
+      return mid;
+    }
+    //? 중간의 수가 0번째 수 이상이면
+    if (rotated[left] <= rotated[mid]) {
+      //? 중간에서 왼쪽 배열 구하는 조건문
+      if (rotated[left] <= target && rotated[mid] >= target) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    } else {
+      //? 오른쪽 배열의 left값
+      if (rotated[mid] <= target && rotated[right] >= target) {
+        left = mid + 1;
+        //? 왼쪽 배열의 right값
+      } else {
+        right = mid - 1;
+      }
+    }
   }
-  return mid;
+  return -1;
 };
 
 let arr = [4, 5, 6, 0, 1, 2, 3];
-let n = 2;
+let n = 5;
 console.log(rotatedArraySearch(arr, n));
 arr = [4, 5, 6, 0, 1, 2, 3];
 n = 100;
