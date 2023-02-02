@@ -1,23 +1,37 @@
 const powerSet = function (str) {
-  // TODO: 여기에 코드를 작성합니다.
-  const answer = [];
-  const set = new Set(str);
-  const arr = [...set];
-  console.log(arr);
-  for (i = 0; i < arr.length; i++) {
-    for (k = 0; k < arr.length; k++) {
-      if (arr[i] !== arr[k] && !answer.includes(arr[i] + arr[k])) {
-        answer.push(arr[i] + arr[k]);
-      }
+  // TODO: 문자열의 멱집합 구하기
+  let set = new Set(str);
+  let arr = [...set].sort();
+  let flag = new Array(arr.length).fill(false);
+  const subSetArr = [];
+  // 깊이우선탐색으로 인덱스 순으로 자식노드를 추가해야함
+  const subSet = (depth) => {
+    // 부분 집합 구하는 재귀 함수, DFS 알고리즘
+    if (depth === arr.length) {
+      // 트리의 끝에 도착하면 재귀 탈출
+      const subSet = arr.filter((_, i) => flag[i]); //
+      subSetArr.push(subSet);
+      return;
     }
+    flag[depth] = true;
+    subSet(depth + 1);
+
+    flag[depth] = false;
+    subSet(depth + 1);
+  };
+
+  subSet(0);
+  const result = [];
+  for (arr of subSetArr) {
+    result.push(arr.join(""));
   }
-  answer.unshift("");
-  console.log(answer);
-  return answer.sort();
+  return result.sort();
 };
 
 let output1 = powerSet("abc");
-console.log(output1); // ['', 'a', 'ab', 'abc', 'ac', 'b', 'bc', 'c']
+console.log(output1);
+// ['', 'a', 'ab', 'abc', 'ac', 'b', 'bc', 'c']
 
 let output2 = powerSet("jjump");
-console.log(output2); // ['', 'j', 'jm', 'jmp', 'jmpu', 'jmu', 'jp', 'jpu', 'ju', 'm', 'mp', 'mpu', 'mu', 'p', 'pu', 'u']
+console.log(output2);
+// ['', 'j', 'jm', 'jmp', 'jmpu', 'jmu', 'jp', 'jpu', 'ju', 'm', 'mp', 'mpu', 'mu', 'p', 'pu', 'u']
