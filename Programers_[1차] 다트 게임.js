@@ -13,7 +13,6 @@ function solution(dartResult) {
       if (arr[i + 1] === "T") {
         result.push(num ** 3);
       }
-      arr = arr.slice(i, arr.length);
     }
   }
   return arr;

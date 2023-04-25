@@ -2,14 +2,14 @@
 
 예를 들어, 상수의 앞에 쌓이는 재료의 순서가 [야채, 빵, 빵, 야채, 고기, 빵, 야채, 고기, 빵]일 때, 상수는 여섯 번째 재료가 쌓였을 때, 세 번째 재료부터 여섯 번째 재료를 이용하여 햄버거를 포장하고, 아홉 번째 재료가 쌓였을 때, 두 번째 재료와 일곱 번째 재료부터 아홉 번째 재료를 이용하여 햄버거를 포장합니다. 즉, 2개의 햄버거를 포장하게 됩니다.
 
-상수에게 전해지는 재료의 정보를 나타내는 정수 배열 ingredient가 주어졌을 때, 상수가 포장하는 햄버거의 개수를 return 하도록 solution 함수를 완성하시오. */
+상수에게 전해지는 재료의 정보를 나타내는 정수 배열 가 주어졌을 때, 상수가 포장하는 햄버거의 개수를 return 하도록 solution 함수를 완성하시오. */
 
-function solution(ingredient) {
+function solution(e) {
   const arr = [];
   let result = 0;
 
-  for (let i = 0; i < ingredient.length; i++) {
-    arr.push(ingredient[i]);
+  for (let i = 0; i < e.length; i++) {
+    arr.push(e[i]);
     if (arr.length >= 4) {
       const find = arr.slice(-4).join("");
       if (find === "1231") {

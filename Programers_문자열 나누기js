@@ -1,0 +1,19 @@
+function solution(s) {
+  let result = 0;
+  let stack = [];
+  for (str of s) {
+    stack.push(str);
+    const same = stack.filter((e) => e === stack[0]);
+    const other = stack.filter((e) => e !== stack[0]);
+    if (same.length === other.length) {
+      result++;
+      stack = [];
+    }
+  }
+  if (stack.length !== 0) result++;
+  return result;
+}
+
+console.log(solution("banana"));
+console.log(solution("abracadabra"));
+console.log(solution("aaabbaccccabba"));
